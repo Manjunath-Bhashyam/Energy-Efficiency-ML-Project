@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 from typing import List
 
 # Declaring variables for setup functions
-PROJECT_NAME = "Energy-Efficiency-Prediction"
+PROJECT_NAME = "Energy-Efficiency-Estimation"
 VERSION = "0.0.1"
 AUTHOR = "Manjunath Bhashyam"
-DESCRIPTION = "This is an end-to-end Machine Learning Energy Efficiency Prediction Project"
+DESCRIPTION = "This is an end-to-end Machine Learning Heat Load & Cool Load Estimation Project"
 
 REQUIREMENT_FILE_NAME = "requirements.txt"
 
