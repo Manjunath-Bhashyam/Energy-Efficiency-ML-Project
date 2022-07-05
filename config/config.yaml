@@ -1,0 +1,11 @@
+training_pipeline_config:
+  pipeline_name: energyefficiency
+  artifact_dir: artifact
+
+data_ingestion_config:
+  dataset_download_url: https://archive.ics.uci.edu/ml/machine-learning-databases/00242/ENB2012_data.xlsx
+  raw_data_dir: raw_data
+  ingested_dir: ingested_data
+  ingested_train_dir: train
+  ingested_test_dir: test
+

@@ -59,8 +59,15 @@ conda activate venv/
 
 setup setup.py file
 
-OR
+&
 
 ```
 pip install -r requirements.txt
 ```
+
+for ipynb files
+```
+pip install ipykernel
+```
+
+
