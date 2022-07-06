@@ -70,4 +70,5 @@ for ipynb files
 pip install ipykernel
 ```
 
+For train_test_split we have used StratifiedShuffleSplit to have the same kind of distribution for Train and Test Sets
 
