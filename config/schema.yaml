@@ -1,0 +1,35 @@
+attributes:
+  X1 Relative Compactness
+  X2 Surface Area
+  X3 Wall Area
+  X4 Roof Area
+  X5 Overall Height
+  X6 Orientation
+  X7 Glazing Area
+  X8 Glazing Area Distribution
+  y1 Heating Load
+  y2 Cooling Load
+ 
+columns:
+  Relative Compactness: float
+  Surface Area: float
+  Wall Area: float
+  Roof Area: float
+  Overall Height: float
+  Orientation: int
+  Glazing Area: float
+  Glazing Area Distribution: int
+  Heating Load: float
+  Cooling Load: float
+
+numerical_columns:
+  - Relative Compactness         
+  - Surface Area
+  - Wall Area
+  - Roof Area
+  - Overall Height
+  - Orientation
+  - Glazing Area
+  - Glazing Area Distribution
+  - Heating Load
+  - Cooling Load
