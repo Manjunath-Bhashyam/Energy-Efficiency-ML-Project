@@ -22,6 +22,8 @@ columns:
   Heating Load: float
   Cooling Load: float
 
+target_columns: [Heating Load, Cooling Load]
+
 numerical_columns:
   - Relative Compactness         
   - Surface Area
