@@ -70,5 +70,39 @@ for ipynb files
 pip install ipykernel
 ```
 
+To setup CI/CD pipeline in heroku we need 3 information
+
+HEROKU_EMAIL
+HEROKU_API_KEY
+HEROKU_APP_NAME
+
+BUILD DOCKER IMAGE
+```
+docker build -t <image_name>:<tagname> .
+```
+> Note: Image name for docker must be lowercase
+
+To list docker image
+```
+docker images
+```
+
+Run docker image
+```
+docker run -p 5000:5000 -e PORT=5000 f8c749e73678
+```
+
+To check running container in docker
+```
+docker ps
+```
+
+To stop docker container
+```
+docker stop <container_id>
+```
+
+Exploratory Data Analysis was performed on the Energy Efficiency Dataset and the observations, conclusions derived are under --> \notebook\Energy Efficiency EDA.ipynb
+
 For train_test_split we have used StratifiedShuffleSplit to have the same kind of distribution for Train and Test Sets
 
