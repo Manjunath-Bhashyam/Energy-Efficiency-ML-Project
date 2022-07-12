@@ -3,19 +3,25 @@ from energyefficiency.logger import logging
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.config.configuration import Configuration
 import sys,os
+from energyefficiency.component.data_transformation import DataTransformation
 
 def main():
     try:
-        # pipeline = Pipeline()
-        # pipeline.run_pipeline()
+        pipeline = Pipeline()
+        pipeline.run_pipeline()
         # data_validation_config = Configuration().get_data_validation_config()
         # print(data_validation_config)
-        data_transformation_config = Configuration().get_data_transformation_config()
-        print(data_transformation_config)
+        # data_transformation_config = Configuration().get_data_transformation_config()
+        # print(data_transformation_config)
+        # schema_file_path = r"D:\Energy Efficiency ML\Energy-Efficiency-ML-Project\config\schema.yaml"
+        # file_path = r"D:\Energy Efficiency ML\Energy-Efficiency-ML-Project\energyefficiency\artifact\data_ingestion\2022-07-08_23-42-58\ingested_data\train\ENB2012_data.xlsx"
+
+        # df = DataTransformation.load_data(file_path=file_path, schema_file_path=schema_file_path)
+        # print(df.columns,df.dtypes)
+
     except Exception as e:
         logging.error(f"{e}")
-        raise HeatCoolException(e,sys) from e
-
+        print(e)
 
 if __name__ == "__main__":
     main()

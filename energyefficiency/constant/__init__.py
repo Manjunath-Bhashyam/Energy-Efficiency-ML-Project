@@ -37,3 +37,9 @@ DATA_TRANSFORMATION_TRAIN_DIR_NAME_KEY = "transformed_train_dir"
 DATA_TRANSFORMATION_TEST_DIR_NAME_KEY = "transformed_test_dir"
 DATA_TRANSFORMATION_PREPROCESSING_DIR_KEY = "preprocessing_dir"
 DATA_TRANSFORMATION_PREPROCESSED_FILE_NAME_KEY = "preprocessed_object_file_name"
+
+DATASET_SCHEMA_COLUMNS_KEY = "columns"
+
+NUMERICAL_COLUMN_KEY = "numerical_columns"
+
+TARGET_COLUMN_KEY = "target_columns"
