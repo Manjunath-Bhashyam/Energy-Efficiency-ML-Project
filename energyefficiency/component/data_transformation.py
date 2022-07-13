@@ -118,3 +118,6 @@ class DataTransformation:
             return data_transformation_artifact
         except Exception as e:
             raise HeatCoolException(e,sys) from e
+
+    def __del__(self):
+            logging.info(f"{'='*20}Data Transformation log completed.{'='*20} \n\n")
