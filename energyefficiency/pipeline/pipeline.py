@@ -1,7 +1,8 @@
 from energyefficiency.config.configuration import Configuration
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging
-from energyefficiency.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact, DataValidationArtifact
+from energyefficiency.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact, DataValidationArtifact,\
+    ModelTrainerArtifact
 from energyefficiency.entity.config_entity import DataIngestionConfig
 from energyefficiency.component.data_ingestion import DataIngestion
 from energyefficiency.component.data_validation import DataValidation
@@ -42,8 +43,13 @@ class Pipeline:
         except Exception as e:
             raise HeatCoolException(e,sys) from e
 
-    def start_model_trainer(self):
-        pass
+    def start_model_trainer(self, data_transformation_artifact: DataTransformationArtifact) -> ModelTrainerArtifact:
+        try:
+            model_trainer = ModelTrainer(model_trainer_config = self.config.get_model_trainer_config(),
+                                         data_transformation_artifact = data_transformation_artifact)
+            return model_trainer.initiate_model_trainer()
+        except Exception as e:
+            raise HeatCoolException(e,sys) from e
 
     def start_model_evaluation(self):
         pass
