@@ -104,5 +104,5 @@ docker stop <container_id>
 
 Exploratory Data Analysis was performed on the Energy Efficiency Dataset and the observations, conclusions derived are under --> \notebook\Energy Efficiency EDA.ipynb
 
-For train_test_split we have used StratifiedShuffleSplit to have the same kind of distribution for Train and Test Sets
+For train_test_split I have used StratifiedShuffleSplit to have the same kind of distribution for Train and Test Sets
 
