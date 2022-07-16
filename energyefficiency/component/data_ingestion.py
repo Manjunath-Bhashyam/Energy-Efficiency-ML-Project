@@ -54,13 +54,13 @@ class DataIngestion:
             logging.info(f"Reading excel file: [{energyefficiency_file_path}]")
             energyefficiency_data_frame = pd.read_excel(energyefficiency_file_path)
 
-            energyefficiency_data_frame.rename(columns={'X1':"Relative Compactness",'X2':"Surface Area",
-                                                'X3':"Wall Area",'X4':"Roof Area",'X5':"Overall Height",
-                                                'X6':"Orientation",'X7':"Glazing Area",'X8':"Glazing Area Distribution",
-                                                'Y1':"Heating Load",'Y2':"Cooling Load"},inplace=True
+            energyefficiency_data_frame.rename(columns={'X1':"Relative_Compactness",'X2':"Surface_Area",
+                                                'X3':"Wall_Area",'X4':"Roof_Area",'X5':"Overall_Height",
+                                                'X6':"Orientation",'X7':"Glazing_Area",'X8':"Glazing_Area_Distribution",
+                                                'Y1':"Heating_Load",'Y2':"Cooling_Load"},inplace=True
                                                 )
             energyefficiency_data_frame["surface_area_cat"] = pd.cut(
-                energyefficiency_data_frame["Surface Area"],
+                energyefficiency_data_frame["Surface_Area"],
                 bins=[500.0,550.0,600.0,700.0,800.0,np.inf],
                 labels = [1,2,3,4,5] #Group Category for Stratified Split
             )             

@@ -1,19 +1,45 @@
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging
 from energyefficiency.entity.config_entity import ModelTrainerConfig
-from energyefficiency.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,\
-    ModelTrainerArtifact
+from energyefficiency.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
+from energyefficiency.entity.model_factory import ModelFactory
 from energyefficiency.constant import *
 from energyefficiency.util.util import read_yaml_file, load_data, load_numpy_array_data, save_numpy_array_data, save_object
 import os,sys
 import numpy as np
 import pandas as pd
+from typing import List
+
+class HousingEstimatorModel:
+    def __init__(self, preprocessing_object, trained_model_object):
+        """
+        TrainedModel Constructor
+        preprocessing_object: preprocessing_object
+        trained_model_object: trained_model_object
+        """
+        self.preprocessing_object = preprocessing_object
+        self.trained_model_object = trained_model_object
+
+    def predict(self, X):
+        """
+        function accepts raw inputs and then transformed raw input using preprocessing_object
+        which guarantees that the inputs are in the same format as the training data
+        At last it performs prediction on the transformed features 
+        """
+        transformed_feature = self.preprocessing_object.transform(X)
+        return self.trained_model_object.predict(transformed_feature)
+
+    def __repr__(self):
+        return f"{type(self.trained_model_object).__name__}()"
+
+    def __str__(self):
+        return f"{type(self.trained_model_object).__name__}()"
 
 class ModelTrainer:
 
     def __init__(self, model_trainer_config:ModelTrainerConfig, data_transformation_artifact:DataTransformationArtifact):
         try:
-            logging.info(f"{'='*20} Model Trainer log started. {'='*20}")
+            logging.info(f"{'='*30} Model Trainer log started. {'='*30}")
             self.model_trainer_config = model_trainer_config
             self.data_transformation_artifact = data_transformation_artifact
         except Exception as e:

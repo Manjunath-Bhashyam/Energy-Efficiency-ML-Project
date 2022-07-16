@@ -1,35 +1,35 @@
 attributes:
-  X1 Relative Compactness
-  X2 Surface Area
-  X3 Wall Area
-  X4 Roof Area
-  X5 Overall Height
+  X1 Relative_Compactness
+  X2 Surface_Area
+  X3 Wall_Area
+  X4 Roof_Area
+  X5 Overall_Height
   X6 Orientation
-  X7 Glazing Area
-  X8 Glazing Area Distribution
-  y1 Heating Load
-  y2 Cooling Load
+  X7 Glazing_Area
+  X8 Glazing_Area_Distribution
+  y1 Heating_Load
+  y2 Cooling_Load
  
 columns:
-  Relative Compactness: float
-  Surface Area: float
-  Wall Area: float
-  Roof Area: float
-  Overall Height: float
+  Relative_Compactness: float
+  Surface_Area: float
+  Wall_Area: float
+  Roof_Area: float
+  Overall_Height: float
   Orientation: int
-  Glazing Area: float
-  Glazing Area Distribution: int
-  Heating Load: float
-  Cooling Load: float
+  Glazing_Area: float
+  Glazing_Area_Distribution: int
+  Heating_Load: float
+  Cooling_Load: float
 
-target_columns: [Heating Load, Cooling Load]
+target_columns: [Heating_Load, Cooling_Load]
 
 numerical_columns:
-  - Relative Compactness         
-  - Surface Area
-  - Wall Area
-  - Roof Area
-  - Overall Height
+  - Relative_Compactness         
+  - Surface_Area
+  - Wall_Area
+  - Roof_Area
+  - Overall_Height
   - Orientation
-  - Glazing Area
-  - Glazing Area Distribution
+  - Glazing_Area
+  - Glazing_Area_Distribution
