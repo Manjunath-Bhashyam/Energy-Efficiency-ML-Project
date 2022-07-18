@@ -22,7 +22,7 @@ data_transformation_config:
   preprocessing_dir: preprocessed
   preprocessed_object_file_name: preprocessed.pkl
 
-model_training_config:
+model_trainer_config:
   trained_model_dir: trained_model
   model_file_name: model.pkl
   base_accuracy: 0.7

@@ -1,3 +1,4 @@
+from energyefficiency.component.model_trainer import ModelTrainer
 from energyefficiency.config.configuration import Configuration
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging
@@ -64,6 +65,7 @@ class Pipeline:
             data_transformation_artifact = self.start_data_transformation(
                                                 data_ingestion_artifact=data_ingestion_artifact,
                                                 data_validation_artifact=data_validation_artifact)
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
 
         except Exception as e:
             raise HeatCoolException(e,sys) from e
