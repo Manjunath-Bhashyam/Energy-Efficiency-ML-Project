@@ -107,12 +107,11 @@ Exploratory Data Analysis was performed on the Energy Efficiency Dataset and the
 For train_test_split I have used StratifiedShuffleSplit to have the same kind of distribution for Train and Test Sets
 
 Steps performed in Model Training
-# loading transformed training and testing dataset
-# reading model config file
-# getting best model on training dataset
-# evaluating models on both training & testing dataset --> model object
-# loading preprocessing object
-# custom model object by combining both preprocessing obj and model obj
-# saving custom model object
-# return model_trainer_artifact
-
+#### loading transformed training and testing dataset
+#### reading model config file
+#### getting best model on training dataset
+#### evaluating models on both training & testing dataset --> model object
+#### loading preprocessing object
+#### custom model object by combining both preprocessing obj and model obj
+#### saving custom model object
+#### return model_trainer_artifact

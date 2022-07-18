@@ -28,3 +28,6 @@ model_trainer_config:
   base_accuracy: 0.7
   model_config_dir: config
   model_config_file_name: model.yaml
+
+model_evaluation_config:
+  model_evaluation_file_name: model_evaluation.yaml
