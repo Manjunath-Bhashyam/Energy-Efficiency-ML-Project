@@ -82,7 +82,7 @@ class ModelEvaluation:
             trained_model_object = load_object(file_path=trained_model_file_path)
 
             train_file_path = self.data_ingestion_artifact.train_file_path
-            test_file_path = self.data_ingestion_artifact.test_file_path]
+            test_file_path = self.data_ingestion_artifact.test_file_path
             
             schema_file_path = self.data_validation_artifact.schema_file_path
 
@@ -109,3 +109,43 @@ class ModelEvaluation:
             model = self.get_best_model()
 
             if model is None:
+                logging.info("Not found any existing model. Hence accepting trained model")
+                model_evaluation_artifact = ModelEvaluationArtifact(evaluated_model_path=trained_model_file_path,
+                                                                    is_model_accepted=True)
+                self.update_evaluation_report(model_evaluation_artifact)
+                logging.info(f"Model accepted. Model eval artifact {model_evaluation_artifact} created")
+                return model_evaluation_artifact
+
+            model_list = [model, trained_model_object]
+
+            metric_info_artifact = evaluate_regression_model(model_list=model_list,
+                                                             X_train=train_dataframe,
+                                                             y_train=train_target_arr,
+                                                             X_test=test_dataframe,
+                                                             y_test=test_target_arr,
+                                                             base_accuracy=self.model_trainer_artifact.model_accuracy)
+
+            logging.info(f"Model evaluation completed. model metric artifact: {metric_info_artifact}")
+
+            if metric_info_artifact is None:
+                response = ModelEvaluationArtifact(is_model_accepted=False,
+                                                   evaluated_model_path=trained_model_file_path)
+                logging.info(response)
+                return response
+            
+            if metric_info_artifact.index_number == 1:
+                model_evaluation_artifact = ModelEvaluationArtifact(evaluated_model_path=trained_model_file_path,
+                                                                    is_model_accepted=True)
+                self.update_evaluation_report(model_evaluation_artifact)
+                logging.info(f"Model accepted. Model eval artifact {model_evaluation_artifact} created")
+
+            else:
+                logging.info("Trained model is no better than existing model hence not accepting trained model")
+                model_evaluation_artifact = ModelEvaluationArtifact(evaluated_model_path=trained_model_file_path,
+                                                                    is_model_accepted=False)
+            return model_evaluation_artifact
+        except Exception as e:
+            raise HeatCoolException(e,sys) from e
+
+    def __del__(self):
+        logging.info(f"{'=' *20} Model Evaluation log completed. {'='*20}")

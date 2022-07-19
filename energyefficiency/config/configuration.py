@@ -1,4 +1,4 @@
-from energyefficiency.entity.config_entity import DataIngestionConfig, DataTransformationConfig, DataValidationConfig, ModelEvaluationConfig, TrainingPipelineConfig,\
+from energyefficiency.entity.config_entity import DataIngestionConfig, DataTransformationConfig, DataValidationConfig, ModelEvaluationConfig, ModelPusherConfig, TrainingPipelineConfig,\
     ModelTrainerConfig
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging
@@ -172,7 +172,7 @@ class Configuration:
         except Exception as e:
             raise HeatCoolException(e,sys) from e
 
-    def get_model_pusher_coinfig(self):
+    def get_model_pusher_coinfig(self) -> ModelPusherConfig:
         pass
 
     def get_training_pipeline_config(self)->TrainingPipelineConfig:
