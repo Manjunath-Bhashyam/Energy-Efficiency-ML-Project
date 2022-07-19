@@ -7,6 +7,9 @@ CONFIG_FILE_PATH = os.path.join(CONFIG_DIR,CONFIG_FILE_NAME)
 
 CURRENT_TIME_STAMP = f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
 
+def get_current_time_stamp():
+    return f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
+
 # Training Pipeline Related Variables:
 TRAINING_PIPELINE_CONFIG_KEY = "training_pipeline_config"
 TRAINING_PIPELINE_ARTIFACT_DIR_KEY = "artifact_dir"
