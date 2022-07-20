@@ -82,3 +82,4 @@ class EnergyEfficiencyPredictor:
             return Heating_Load, Cooling_Load
         except Exception as e:
             raise HeatCoolException(e,sys) from e
+            

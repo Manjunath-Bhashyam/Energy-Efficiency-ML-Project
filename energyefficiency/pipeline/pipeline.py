@@ -1,8 +1,5 @@
 from collections import namedtuple
 from datetime import datetime
-from multiprocessing.connection import Pipe
-
-from sklearn import pipeline
 from energyefficiency.config.configuration import Configuration
 from energyefficiency.entity.experiment import Experiment
 from energyefficiency.exception import HeatCoolException
@@ -155,3 +152,44 @@ class Pipeline(Thread):
             self.save_experiment()
         except Exception as e:
             raise HeatCoolException(e,sys) from e
+
+    def run(self):
+        try:
+            self.run_pipeline()
+        except Exception as e:
+            raise e
+
+    def save_experiment(self):
+        try:
+            if Pipeline.experiment.experiment_id is not None:
+                experiment = Pipeline.experiment
+                experiment_dict = experiment._asdict()
+                experiment_dict: dict = {key: [value] for key, value in experiment_dict.items()}
+
+                experiment_dict.update({
+                    "created_time_stamp": [datetime.now()],
+                    "experiment_file_path": [os.path.basename(Pipeline.experiment.experiment_file_path)]})
+                
+                experiment_report = pd.DataFrame(experiment_dict)
+
+                os.makedirs(os.path.dirname(Pipeline.experiment_file_path),exist_ok=True)
+                if os.path.exists(Pipeline.experiment_file_path):
+                    experiment_report.to_csv(Pipeline.experiment_file_path, index=False, header=False, mode="a")
+                else:
+                    experiment_report.to_csv(Pipeline.experiment_file_path, mode="w",index=False, header=True)
+            else:
+                print("First start experiment")
+        except Exception as e:
+            raise HeatCoolException(e,sys) from e
+
+    @classmethod
+    def get_experiment_status(cls, limit: int = 5) -> pd.DataFrame:
+        try:
+            if os.path.exists(Pipeline.experiment_file_path):
+                df = pd.read_csv(Pipeline.experiment_file_path)
+                limit = -1 * int(limit)
+                return df[limit:].drop(columns=["experiment_file_path","initialization_timestamp"], axis=1)
+            else:
+                return pd.DataFrame()
+        except Exception as e:
+            raise HeatCoolException(e,sys) from e    
