@@ -14,8 +14,8 @@ class EnergyEfficiencyData:
                  Orientation: int,
                  Glazing_Area: float,
                  Glazing_Area_Distribution: int,
-                 Heating_Load: float,
-                 Cooling_Load: float):
+                 Heating_Load: float = None,
+                 Cooling_Load: float = None):
         try:
             self.Relative_Compactness = Relative_Compactness,
             self.Surface_Area = Surface_Area,
@@ -41,9 +41,7 @@ class EnergyEfficiencyData:
                 "Overall_Height": [self.Overall_Height],
                 "Orientation": [self.Orientation],
                 "Glazing_Area": [self.Glazing_Area],
-                "Glazing_Area_Distribution": [self.Glazing_Area_Distribution],
-                "Heating_Load": [self.Heating_Load],
-                "Cooling_Load": [self.Cooling_Load]}
+                "Glazing_Area_Distribution": [self.Glazing_Area_Distribution]}
             return input_data
         except Exception as e:
             raise HeatCoolException(e,sys) from e

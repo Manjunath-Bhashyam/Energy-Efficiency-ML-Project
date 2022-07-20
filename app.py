@@ -1,5 +1,3 @@
-from site import abs_paths
-from unittest import result
 from flask import Flask, request
 import os,sys
 from energyefficiency.exception import HeatCoolException
@@ -85,7 +83,7 @@ def train():
     message = ""
     pipeline = Pipeline(config=Configuration(current_time_stamp=get_current_time_stamp()))
     if not Pipeline.experiment.running_status:
-        message = "Training started".
+        message = "Training started."
         pipeline.start()
     else:
         message = "Training is already in progress."
@@ -177,7 +175,7 @@ def update_model_config():
         return str(e)
     
 @app.route(f'/logs', defaults={'req_path': f'{LOG_FOLDER_NAME}'})
-@app.route(f'/{LOG_FOLDER_NAME}/<path:req_path')
+@app.route(f'/{LOG_FOLDER_NAME}/<path:req_path>')
 def render_log_dir(req_path):
     os.makedirs(LOG_FOLDER_NAME, exist_ok=True)
     # Joining the base and the requested path
@@ -194,9 +192,15 @@ def render_log_dir(req_path):
         context = {"log": log_df.to_html(classes="table-striped", index=False)}
         return render_template('log.html', context=context)
     
-    # Show directories
+    # Show directory contents
+    files = {os.path.join(abs_path, file): file for file in os.listdir(abs_path)}
 
-
+    result = {
+        "files": files,
+        "parent_folder": os.path.dirname(abs_path),
+        "parent_label": abs_path
+    }
+    return render_template('log_files.html', result=result)
 
 if __name__ == "__main__":
     app.run(debug=True)
