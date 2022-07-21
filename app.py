@@ -4,7 +4,6 @@ from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging
 from energyefficiency.config.configuration import Configuration
 import json
-import pip
 from energyefficiency.pipeline.pipeline import Pipeline
 from energyefficiency.entity.energyefficiency_predictor import EnergyEfficiencyPredictor, EnergyEfficiencyData
 from energyefficiency.constant import CONFIG_DIR, ROOT_DIR, get_current_time_stamp
@@ -76,7 +75,7 @@ def view_experiment_history():
     context = {
         "experiment": experiment_df.to_html(classes='table table-striped col-12')
     }
-    return render_template('experiment_history.html, context = context')
+    return render_template('experiment_history.html', context = context)
 
 @app.route('/train', methods = ['GET', 'POST'])
 def train():
@@ -118,11 +117,13 @@ def predict():
                                                      Overall_Height=Overall_Height,
                                                      Orientation=Orientation,
                                                      Glazing_Area=Glazing_Area,
-                                                     Glazing_Area_Distribution=Glazing_Area_Distribution
+                                                     Glazing_Area_Distribution=Glazing_Area_Distribution,
                                                      )
         energyefficiency_df = energyefficiency_data.get_energyefficiency_input_data_frame()
         energyefficiency_predictor = EnergyEfficiencyPredictor(model_dir=MODEL_DIR)
-        Heating_Load, Cooling_Load = energyefficiency_predictor.predict(X=energyefficiency_df)
+        output = energyefficiency_predictor.predict(X=energyefficiency_df)
+        Heating_Load = output['Heating_Load']
+        Cooling_Load = output['Cooling_Load']
         context = {
             ENERGYEFFICIENCY_DATA_KEY: energyefficiency_data.get_energyefficiency_data_as_dict(),
             HEATING_LOAD_VALUE_KEY: Heating_Load,

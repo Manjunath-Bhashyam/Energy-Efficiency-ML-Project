@@ -76,8 +76,8 @@ class EnergyEfficiencyPredictor:
         try:
             model_path = self.get_latest_model_path()
             model = load_object(file_path=model_path)
-            Heating_Load, Cooling_Load = model.predict(X)
-            return Heating_Load, Cooling_Load
+            output = model.predict(X)
+            return output
         except Exception as e:
             raise HeatCoolException(e,sys) from e
             
