@@ -4,7 +4,7 @@ import os
 import pandas as pd
 from energyefficiency.constant import get_current_time_stamp
 
-LOG_DIR = "efficiency_logs"
+LOG_DIR = "logs"
 
 def get_log_file_name():
     return f"log_{get_current_time_stamp()}.log"

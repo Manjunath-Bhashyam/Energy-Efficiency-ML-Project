@@ -5,7 +5,7 @@ from energyefficiency.entity.experiment import Experiment
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging, get_log_file_name
 from energyefficiency.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact, DataValidationArtifact, \
-    ModelEvaluationArtifact, ModelTrainerArtifact
+    ModelEvaluationArtifact, ModelTrainerArtifact, ModelPusherArtifact
 from energyefficiency.entity.config_entity import DataIngestionConfig
 from energyefficiency.component.data_ingestion import DataIngestion
 from energyefficiency.component.data_validation import DataValidation
@@ -28,7 +28,7 @@ class Pipeline(Thread):
     experiment: Experiment = Experiment(*([None] * 11))
     experiment_file_path = None
 
-    def __init__(self,config:Configuration = Configuration()) -> None:
+    def __init__(self,config:Configuration ) -> None:
         try:
             os.makedirs(config.training_pipeline_config.artifact_dir,exist_ok=True)
             Pipeline.experiment_file_path = os.path.join(config.training_pipeline_config.artifact_dir,EXPERIMENT_DIR_NAME,
@@ -84,7 +84,7 @@ class Pipeline(Thread):
         except Exception as e:
             raise HeatCoolException(e,sys) from e
 
-    def start_model_pusher(self, model_eval_artifact: ModelEvaluationArtifact) -> ModelEvaluationArtifact:
+    def start_model_pusher(self, model_eval_artifact: ModelEvaluationArtifact) -> ModelPusherArtifact:
         try:
             model_pusher = ModelPusher(
                             model_pusher_config=self.config.get_model_pusher_config(),

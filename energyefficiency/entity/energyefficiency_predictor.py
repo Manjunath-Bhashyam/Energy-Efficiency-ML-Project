@@ -1,7 +1,7 @@
 from energyefficiency.exception import HeatCoolException
-from energyefficiency.util.util import load_object
-import os,sys
+from energyefficiency.util.util import load_object, load_object_return
 import pandas as pd
+import os,sys
 
 class EnergyEfficiencyData:
 
@@ -65,7 +65,7 @@ class EnergyEfficiencyPredictor:
     def get_latest_model_path(self):
         try:
             folder_name = list(map(int, os.listdir(self.model_dir)))
-            latest_model_dir = os.path.join(self.model_dir, f"{max(folder_name)}")
+            latest_model_dir = os.path.join(self.model_dir, f"{max(folder_name,default=0)}")
             file_name = os.listdir(latest_model_dir)[0]
             latest_model_path = os.path.join(latest_model_dir, file_name)
             return latest_model_path
@@ -75,7 +75,7 @@ class EnergyEfficiencyPredictor:
     def predict(self, X):
         try:
             model_path = self.get_latest_model_path()
-            model = load_object(file_path=model_path)
+            model = load_object_return(file_path=model_path)
             output = model.predict(X)
             return output
         except Exception as e:

@@ -11,6 +11,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from energyefficiency.util.util import read_yaml_file,load_data,save_numpy_array_data,load_numpy_array_data,save_object,load_object, save_object
 from energyefficiency.constant import *
+from sklearn.base import BaseEstimator, TransformerMixin
 
   # Relative Compactness: float
   # Surface Area: float
@@ -44,12 +45,16 @@ class DataTransformation:
 
             numerical_columns = dataset_schema[NUMERICAL_COLUMN_KEY]
 
+            num_pipeline = Pipeline(steps=[
+                ('imputer', SimpleImputer(strategy="median")),
+                ('scaler', StandardScaler())
+            ])
+
             logging.info(f"Numerical columns: {numerical_columns}")
 
-            preprocessing = ColumnTransformer(transformers=[
-                ('imputer', SimpleImputer(strategy="median"),numerical_columns),
-                ('scaler', StandardScaler(),numerical_columns)
-                ]
+            preprocessing = ColumnTransformer([
+                ('num_pipeline', num_pipeline, numerical_columns),
+            ]
                 )
             return preprocessing
         except Exception as e:

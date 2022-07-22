@@ -117,7 +117,7 @@ def predict():
                                                      Overall_Height=Overall_Height,
                                                      Orientation=Orientation,
                                                      Glazing_Area=Glazing_Area,
-                                                     Glazing_Area_Distribution=Glazing_Area_Distribution,
+                                                     Glazing_Area_Distribution=Glazing_Area_Distribution
                                                      )
         energyefficiency_df = energyefficiency_data.get_energyefficiency_input_data_frame()
         energyefficiency_predictor = EnergyEfficiencyPredictor(model_dir=MODEL_DIR)
