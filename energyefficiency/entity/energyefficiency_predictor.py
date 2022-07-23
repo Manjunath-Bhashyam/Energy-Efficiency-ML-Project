@@ -1,5 +1,5 @@
 from energyefficiency.exception import HeatCoolException
-from energyefficiency.util.util import load_object, load_object_return
+from energyefficiency.util.util import load_object
 import pandas as pd
 import os,sys
 
@@ -75,7 +75,7 @@ class EnergyEfficiencyPredictor:
     def predict(self, X):
         try:
             model_path = self.get_latest_model_path()
-            model = load_object_return(file_path=model_path)
+            model = load_object(file_path=model_path)
             output = model.predict(X)
             return output
         except Exception as e:

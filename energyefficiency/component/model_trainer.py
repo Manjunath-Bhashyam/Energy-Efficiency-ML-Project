@@ -4,7 +4,7 @@ from energyefficiency.entity.config_entity import ModelTrainerConfig
 from energyefficiency.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
 from energyefficiency.entity.model_factory import GridSearchedBestModel, MetricInfoArtifact, ModelFactory, evaluate_regression_model
 from energyefficiency.constant import *
-from energyefficiency.util.util import load_object, load_object_return, read_yaml_file, load_data, load_numpy_array_data, save_numpy_array_data, save_object
+from energyefficiency.util.util import load_object,read_yaml_file, load_data, load_numpy_array_data, save_numpy_array_data, save_object
 import os,sys
 import numpy as np
 import pandas as pd
@@ -26,7 +26,7 @@ class EnergyEfficiencyEstimatorModel:
         which guarantees that the inputs are in the same format as the training data
         At last it performs prediction on the transformed features 
         """
-        transformed_feature = self.preprocessing_object.transform(X)
+        transformed_feature = self.preprocessing_object.transform([X])
         return self.trained_model_object.predict(transformed_feature)
 
     def __repr__(self):
@@ -56,7 +56,7 @@ class ModelTrainer:
             test_array = load_numpy_array_data(file_path=transformed_test_file_path)
             
             logging.info(f"Splitting training and testing input and target feature")
-            X_train,y_train,X_test,y_test = train_array[:,:-2],train_array[:,-2],test_array[:,:-2],test_array[:,-2]
+            X_train,y_train,X_test,y_test = train_array[:,:-2],train_array[:,[-2,-1]],test_array[:,:-2],test_array[:,[-2,-1]]
 
             logging.info(f"Extracting model config file path")
             model_config_file_path = self.model_trainer_config.model_config_file_path
@@ -84,7 +84,7 @@ class ModelTrainer:
             
             logging.info(f"Best found model on both training and testing dataset.")
 
-            preprocessing_obj = load_object_return(file_path=self.data_transformation_artifact.preprocessed_object_file_path)
+            preprocessing_obj = load_object(file_path=self.data_transformation_artifact.preprocessed_object_file_path)
             model_object = metric_info.model_object
 
             trained_model_file_path = self.model_trainer_config.trained_model_file_path
