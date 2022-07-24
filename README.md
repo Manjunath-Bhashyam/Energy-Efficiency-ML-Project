@@ -1,5 +1,7 @@
 ## Energy-Efficiency-ML-Project
 
+[Deployed URL](https://energy-efficiency-predictor.herokuapp.com/predict)
+
 ### End-to-End Machine Learning Project;
 
 ### Problem Statement:
@@ -25,7 +27,7 @@ used as a multi-class classification problem if the response is rounded to the n
 
 The dataset contains eight attributes (or features, denoted by X1...X8) and
 two responses (or outcomes, denoted by y1 and y2). The aim is to use the eight features to predict
-each of the two responses.
+each of the two responses - Heating Load & Cooling Load.
 
 #### Specifically:
 - X1 Relative Compactness
