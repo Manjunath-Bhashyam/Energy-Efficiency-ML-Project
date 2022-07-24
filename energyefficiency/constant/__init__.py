@@ -47,6 +47,10 @@ NUMERICAL_COLUMN_KEY = "numerical_columns"
 
 TARGET_COLUMN_KEY = "target_columns"
 
+TARGET_COLUMN_KEY_1 = "target_column_1"
+
+TARGET_COLUMN_KEY_2 = "target_column_2"
+
 # Model Training related variables:
 
 MODEL_TRAINER_ARTIFACT_DIR = "model_trainer"

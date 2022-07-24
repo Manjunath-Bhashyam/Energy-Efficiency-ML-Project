@@ -24,6 +24,12 @@ columns:
 
 target_columns: [Heating_Load, Cooling_Load]
 
+target_column_1: 
+  - Heating_Load
+
+target_column_2:
+  - Cooling_Load
+
 numerical_columns:
   - Relative_Compactness         
   - Surface_Area

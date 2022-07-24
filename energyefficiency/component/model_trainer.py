@@ -26,7 +26,7 @@ class EnergyEfficiencyEstimatorModel:
         which guarantees that the inputs are in the same format as the training data
         At last it performs prediction on the transformed features 
         """
-        transformed_feature = self.preprocessing_object.transform([X])
+        transformed_feature = self.preprocessing_object.transform(X)
         return self.trained_model_object.predict(transformed_feature)
 
     def __repr__(self):

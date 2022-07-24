@@ -1,5 +1,7 @@
 from collections import namedtuple
+from operator import mod
 from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.multioutput import MultiOutputRegressor
 from energyefficiency.exception import HeatCoolException
 from energyefficiency.logger import logging
 import os,sys
