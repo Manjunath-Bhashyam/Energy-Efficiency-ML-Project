@@ -15,7 +15,43 @@ model_selection:
       fit_intercept:
       - True
 
-  module_1:
+  module_1: 
+    class: Lasso
+    module: sklearn.linear_model
+    params:
+      fit_intercept: True
+    search_param_grid:
+      alpha:
+      - 0.1
+      - 1
+      - 10
+
+  module_2: 
+    class: Ridge
+    module: sklearn.linear_model
+    params:
+      fit_intercept: True
+    search_param_grid:
+      alpha:
+      - 0.1
+      - 1
+      - 10
+
+  module_3: 
+    class: ElasticNet
+    module: sklearn.linear_model
+    params:
+      fit_intercept: True
+    search_param_grid:
+      alpha:
+      - 0.1
+      - 1
+      - 10
+      l1_ratio:
+      - 0.1
+      - 0.5
+
+  module_4:
     class: RandomForestRegressor
     module: sklearn.ensemble
     params:

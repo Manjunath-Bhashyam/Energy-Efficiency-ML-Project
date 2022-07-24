@@ -93,15 +93,15 @@
 
             {% endfor %}
             <tr>
-
-                <td>Heating_Load </td>
-                <td>
-                    {{ context['Heating_Load'] }}
-                </td>
-                <td>Cooling_Load </td>
-                <td>
-                    {{ context['Cooling_Load'] }}
-                </td>
+            
+                <tr>
+                    <td>Heating_Load </td>
+                    <td>{{ context['Heating_Load'] }}</td>
+                </tr>
+                <tr><td>Cooling_Load </td>
+                    <td>{{ context['Cooling_Load'] }}</td>
+                </tr>
+                
             </tr>
         </table>
 

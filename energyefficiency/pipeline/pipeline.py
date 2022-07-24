@@ -184,7 +184,7 @@ class Pipeline(Thread):
     @classmethod
     def get_experiment_status(cls, limit: int = 5) -> pd.DataFrame:
         try:
-            if os.path.exists(Pipeline.experiment_file_path):
+            if os.path.exists(str(Pipeline.experiment_file_path)):
                 df = pd.read_csv(Pipeline.experiment_file_path)
                 limit = -1 * int(limit)
                 return df[limit:].drop(columns=["experiment_file_path","initialization_timestamp"], axis=1)

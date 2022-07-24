@@ -39,9 +39,15 @@ table-layout: fixed;
     word-wrap: break-word;
 }
 </style>
-<body style="background-color: #f1f1f1;">
-
-
+<body style="background-color: #8dbb9c;">
+<style>
+    body {
+        background-image: url('https://static9.depositphotos.com/1384229/1196/i/600/depositphotos_11969290-stock-photo-air-conditioner-microclimate-of-vital.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }  
+    </style>
 
     <!---
     
@@ -50,7 +56,7 @@ table-layout: fixed;
     
     
     -->
-
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
@@ -84,26 +90,26 @@ table-layout: fixed;
         </div>
     </nav>
 
-
+    
 
     <div class="row" style="margin-left: 5%;margin-right:5%;">
        
         <div class="col-md-2 col-sm-12 col-lg-2">
             <ul class=" list-group ">
                 <li class="list-group-item py-1  {% if 'log' in request.path %} active {% endif %}">
-                    <a  style=" text-decoration: none;color:black" href="/logs">View Logs</a>
+                    <a  style=" text-decoration: none;color:rgb(26, 156, 179)" href="/logs">View Logs</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'artifact' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:rgb(0, 0, 0)" href="/artifact">View Artifacts</a>
+                    <a style=" text-decoration: none;color:rgb(199, 99, 18)" href="/artifact">View Artifacts</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'saved_models' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/saved_models">View Trained Model</a>
+                    <a style=" text-decoration: none;color:rgb(161, 67, 103)" href="/saved_models">View Trained Model</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'predict' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/predict">Estimate Heating Load and Cooling Load</a>
+                    <a style=" text-decoration: none;color:rgb(90, 32, 5)" href="/predict">Estimate Heating Load and Cooling Load</a>
                 </li>
                 <li class="list-group-item py-1 {% if 'train' in request.path %} active {% endif %}">
-                    <a style=" text-decoration: none;color:black" href="/train">Train Heating Load and Cooling Load Estimator</a>
+                    <a style=" text-decoration: none;color:rgb(163, 110, 11)" href="/train">Train Heating Load and Cooling Load Estimator</a>
                 </li>
                 
 
