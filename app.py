@@ -9,7 +9,6 @@ from energyefficiency.entity.energyefficiency_predictor import EnergyEfficiencyP
 from energyefficiency.constant import CONFIG_DIR, ROOT_DIR, get_current_time_stamp
 from flask import send_file, abort, render_template
 from energyefficiency.util.util import write_yaml_file, read_yaml_file
-from matplotlib.style import context
 
 ROOT_DIR = os.getcwd()
 LOG_FOLDER_NAME = "logs"
@@ -106,9 +105,9 @@ def predict():
         Wall_Area = float(request.form['Wall_Area'])
         Roof_Area = float(request.form['Roof_Area'])
         Overall_Height = float(request.form['Overall_Height'])
-        Orientation = int(request.form['Orientation'])
+        Orientation = float(request.form['Orientation'])
         Glazing_Area = float(request.form['Glazing_Area'])
-        Glazing_Area_Distribution = int(request.form['Glazing_Area_Distribution'])
+        Glazing_Area_Distribution = float(request.form['Glazing_Area_Distribution'])
         
         energyefficiency_data = EnergyEfficiencyData(Relative_Compactness=Relative_Compactness,
                                                      Surface_Area=Surface_Area,
@@ -122,12 +121,10 @@ def predict():
         energyefficiency_df = energyefficiency_data.get_energyefficiency_input_data_frame()
         energyefficiency_predictor = EnergyEfficiencyPredictor(model_dir=MODEL_DIR)
         output = energyefficiency_predictor.predict(X=energyefficiency_df)
-        Heating_Load = output['Heating_Load']
-        Cooling_Load = output['Cooling_Load']
         context = {
             ENERGYEFFICIENCY_DATA_KEY: energyefficiency_data.get_energyefficiency_data_as_dict(),
-            HEATING_LOAD_VALUE_KEY: Heating_Load,
-            COOLING_LOAD_VALUE_KEY: Cooling_Load
+            HEATING_LOAD_VALUE_KEY: output[0,0],
+            COOLING_LOAD_VALUE_KEY: output[0,1]
         }
         return render_template("predict.html", context=context)
     return render_template("predict.html", context=context)

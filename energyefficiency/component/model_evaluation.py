@@ -96,8 +96,8 @@ class ModelEvaluation:
 
             # target_column
             logging.info(f"Converting target columns into numpy array.")
-            train_target_arr = np.array(train_dataframe[target_column_name])
-            test_target_arr = np.array(test_dataframe[target_column_name])
+            train_target_arr = np.array(train_dataframe[target_column_name], dtype=float)
+            test_target_arr = np.array(test_dataframe[target_column_name], dtype=float)
             logging.info(f"Conversion completed target column into numpy array.")
 
             # dropping target_column from dataframe

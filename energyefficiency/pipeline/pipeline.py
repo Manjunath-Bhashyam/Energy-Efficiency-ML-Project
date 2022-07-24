@@ -31,8 +31,7 @@ class Pipeline(Thread):
     def __init__(self,config:Configuration ) -> None:
         try:
             os.makedirs(config.training_pipeline_config.artifact_dir,exist_ok=True)
-            Pipeline.experiment_file_path = os.path.join(config.training_pipeline_config.artifact_dir,EXPERIMENT_DIR_NAME,
-                                                         EXPERIMENT_FILE_NAME)
+            Pipeline.experiment_file_path = os.path.join(config.training_pipeline_config.artifact_dir,EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME)
             super().__init__(daemon=False, name="pipeline")
             self.config = config
         except Exception as e:
@@ -157,7 +156,7 @@ class Pipeline(Thread):
         try:
             self.run_pipeline()
         except Exception as e:
-            raise e
+            raise HeatCoolException(e,sys) from e
 
     def save_experiment(self):
         try:

@@ -18,9 +18,9 @@ from sklearn.base import BaseEstimator, TransformerMixin
   # Wall Area: float
   # Roof Area: float
   # Overall Height: float
-  # Orientation: int
+  # Orientation: float
   # Glazing Area: float
-  # Glazing Area Distribution: int
+  # Glazing Area Distribution: float
   # Heating Load: float
   # Cooling Load: float
 
@@ -91,9 +91,12 @@ class DataTransformation:
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
-            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
+            input_feature_train_arr = input_feature_train_arr.astype(float)
+            input_feature_test_arr = input_feature_test_arr.astype(float)
 
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df,dtype=float)]
+
+            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df,dtype=float)]
 
             transformed_train_dir = self.data_transformation_config.transformed_train_dir
             transformed_test_dir = self.data_transformation_config.transformed_test_dir
