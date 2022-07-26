@@ -2,10 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+saved_models/*
 # C extensions
 *.so
-
+energyefficiency/artifact
 Inputs
 # Distribution / packaging
 .Python
