@@ -1,7 +1,0 @@
-best_model:
-  model_path: D:\Energy Efficiency ML\Energy-Efficiency-ML-Project\energyefficiency\artifact\model_trainer\2022-07-26_22-13-32\trained_model\model.pkl
-history:
-  2022-07-24_18-20-01:
-    model_path: D:\Energy Efficiency ML\Energy-Efficiency-ML-Project\energyefficiency\artifact\model_trainer\2022-07-24_17-55-25\trained_model\model.pkl
-  2022-07-26_22-13-32:
-    model_path: D:\Energy Efficiency ML\Energy-Efficiency-ML-Project\energyefficiency\artifact\model_trainer\2022-07-24_18-20-01\trained_model\model.pkl
