@@ -6,5 +6,4 @@ sklearn
 PyYAML
 evidently
 dill
-pickle5
 -e .
