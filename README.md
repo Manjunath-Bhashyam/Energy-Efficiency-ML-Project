@@ -118,6 +118,7 @@ For train_test_split I have used StratifiedShuffleSplit to have the same kind of
 - return model_trainer_artifact
 
 #### On the Deployed page to obtain the Predicted Heating Load, Cooling Load:
- - Enter the Input feature Values provided in the "Heating Load & Cooling Load Estimation Form"
+ - Once the Deployed page is displayed initially we need to obtain our Machine Learning Model by clicking on "Train Heating Load and Cooling Load Estimator".
+ - Next, enter the Input feature Values provided in the "Heating Load & Cooling Load Estimation Form"
  - Next, click on the "Predict Heating Load & Cooling Load"
  - The Output Result is tabulated on your screen with all the features and respective values.
